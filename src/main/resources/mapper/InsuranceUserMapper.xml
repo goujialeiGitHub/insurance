@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.InsuranceUserMapper">
+<!--注册添加-->
+ <insert id="save" parameterType="com.po.InsuranceUser">
+   insert into insurance_user(userId,userPhone,userName,userPassword,idNumber,userType,creationTime,creator,modifyDate,modifiers,activated) values(#{userId},#{userPhone},#{userName},#{userPassword},#{idNumber},#{userType},#{creationTime},#{creator},#{modifyDate},#{modifiers},#{activated})
+ </insert>
+<!-- 判断用户是否存在   -->
+<select id="findByUserId" parameterType="java.lang.String" resultType="com.po.InsuranceUser">
+   select * from  insurance_user where userId=#{userId}
+</select>
+<!--  激活账号  -->
+ <update id="updateActivated"  parameterType="java.lang.String">
+     update insurance_user set activated=1 where userId=#{userId}
+ </update>
+</mapper>
